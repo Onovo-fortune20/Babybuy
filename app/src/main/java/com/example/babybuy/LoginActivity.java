@@ -35,10 +35,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         createnewAccount = findViewById(R.id.createAcct);
 
+        createnewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginActivity.this, "ENTERING REGISTRATION ACTIVITY", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this,RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         inputEmail = findViewById(R.id.loginMail);
         inputPassword = findViewById(R.id.loginPass);
+
         btnLogin = findViewById(R.id.loginBtnL);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
