@@ -7,14 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.babybuy.Model.item;
+import com.example.babybuy.Model.Item;
 import com.example.babybuy.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,12 +21,12 @@ import java.util.List;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleViewHolder> {
     private Context mContext;
-    private List<item> items;
+    private List<Item> Items;
     private OnItemClickListener mListener;
 
-    public RecycleAdapter(Context context, List<item> uploads){
+    public RecycleAdapter(Context context, List<Item> uploads){
         mContext = context;
-        items = uploads;
+        Items = uploads;
 
     }
 
@@ -40,7 +39,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
 
     @Override
     public void onBindViewHolder(@NonNull RecycleAdapter.RecycleViewHolder holder, int position) {
-        item currentitems = items.get(position);
+        Item currentitems = Items.get(position);
         holder.itemTextView.setText(currentitems.getItem_name());
         holder.descriptionTextView.setText(currentitems.getItem_description());
         holder.priceTextView.setText(currentitems.getItem_price());
@@ -55,7 +54,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.RecycleV
     }
     @Override
     public int getItemCount() {
-        return items.size();
+        return Items.size();
     }
 
     public class RecycleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,

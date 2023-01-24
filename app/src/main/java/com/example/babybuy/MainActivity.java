@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.babybuy.Model.item;
+import com.example.babybuy.Model.Item;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -129,7 +128,7 @@ private  static  final int PICK_IMAGE_REQUEST = 1;
                         }
                     }, 500);
                     Toast.makeText(MainActivity.this, "items upload successful", Toast.LENGTH_SHORT).show();
-                    item Item = new item(itemName.getText().toString(),
+                    Item Item = new Item(itemName.getText().toString(),
                             taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
                     itemDescription.getText().toString()
                     );

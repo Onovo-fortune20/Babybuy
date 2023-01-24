@@ -1,21 +1,22 @@
 package com.example.babybuy.Model;
 
-public class item {
+public class Item {
     private String imageUrl;
     private String item_name;
     private String item_price;
+    private String key;
     private String item_description;
     private int position;
 
-    public item() {
+    public Item() {
         //empty constructor
     }
 
-    public item (int position){
+    public Item(int position){
         this.position = position;
 
     }
-    public item (String name, String imageUrl, String des){
+    public Item(String name, String imageUrl, String des){
         if (name.trim().equals("")){
             name = "No Name";
 
@@ -64,5 +65,13 @@ public class item {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
