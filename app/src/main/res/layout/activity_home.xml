@@ -78,7 +78,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mRecyclerView"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addFab"

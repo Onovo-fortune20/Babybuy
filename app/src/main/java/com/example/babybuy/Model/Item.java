@@ -27,6 +27,15 @@ public class Item {
 
     }
 
+    public Item(String imageUrl, String item_name, String item_price, String item_description) {
+        this.imageUrl = imageUrl;
+        this.item_name = item_name;
+        this.item_price = item_price;
+        this.key = key;
+        this.item_description = item_description;
+        this.position = position;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }

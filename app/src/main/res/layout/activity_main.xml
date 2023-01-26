@@ -37,7 +37,6 @@
         android:layout_width="370dp"
         android:layout_height="166dp"
         android:layout_marginTop="14dp"
-        android:src="@drawable/logimg"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -46,7 +45,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/loginMail"
+        android:id="@+id/loginMailItem"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -60,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/loginPass"
+        android:id="@+id/loginPassItem"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -81,6 +80,7 @@
         android:background="@drawable/sign"
         android:hint="Item description"
         android:paddingLeft="20dp"
+        android:gravity="top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginMail" />
+        app:layout_constraintTop_toBottomOf="@+id/loginMailItem" />
 
     <TextView
         android:id="@+id/textView4"
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPass" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPassItem" />
 
     <Button
         android:id="@+id/button"
