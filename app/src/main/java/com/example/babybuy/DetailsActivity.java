@@ -1,3 +1,4 @@
+
 package com.example.babybuy;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,27 +18,38 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 public class DetailsActivity extends AppCompatActivity {
-    TextView itemDetailTextView,descriptionDetailTextView,priceDetailTextView;
-    FloatingActionButton sendBtnId;
+    TextView nameDetailTextView,descriptionDetailTextView,priceDetailTextView;
+    ImageView teacherDetailImageView;
+    FloatingActionButton sendBtnID;
 
     final int SEND_SMS_PERMISSION_REQUEST_CODE = 3;
 
-
-    TextView nameDetailTextView, descriptionTextView, priceTextView, dateDetailTextView;
-    ImageView itemDetailImageView;
-
     private void initializeWidgets(){
         nameDetailTextView= findViewById(R.id.itemDetailTextView);
-        descriptionTextView= findViewById(R.id.descriptionDetailTextView);
-        priceTextView= findViewById(R.id.priceDetailTextView);
-        itemDetailImageView=findViewById(R.id.imageView8);
+        descriptionDetailTextView= findViewById(R.id.descriptionDetailTextView);
+        priceDetailTextView= findViewById(R.id.priceDetailTextView);
+        teacherDetailImageView=findViewById(R.id.imageView8);
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        sendBtnID = findViewById(R.id.sendBtnId);
+
+        sendBtnID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareTextMessage();
+            }
+        });
 
         initializeWidgets();
 
@@ -54,13 +66,12 @@ public class DetailsActivity extends AppCompatActivity {
         priceDetailTextView.setText(price);
         Picasso.with(this)
                 .load(imageURL)
-                .placeholder(R.drawable.babybuy202)
+                .placeholder(R.drawable.download)
                 .fit()
                 .centerCrop()
-                .into(itemDetailImageView);
+                .into(teacherDetailImageView);
 
     }
-
 
     public boolean checkPermission(String permission){
         int check = ContextCompat.checkSelfPermission(this, permission);
@@ -68,13 +79,12 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void shareTextMessage(){
-        String title = itemDetailTextView.getText().toString();
+        String title = nameDetailTextView.getText().toString();
         String price = priceDetailTextView.getText().toString();
         String description = descriptionDetailTextView.getText().toString();
         String phoneNumber = "";
 
         String message = "Item Name: " + title + "\nItem Price: " + price + "\nItem Description: " + description;
-
 
         Toast.makeText(this, "sending " + message , Toast.LENGTH_SHORT).show();
 

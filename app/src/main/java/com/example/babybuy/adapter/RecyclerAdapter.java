@@ -1,5 +1,4 @@
 package com.example.babybuy.adapter;
-
 import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -7,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,14 +18,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>{
+
+public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
     private Context mContext;
-    private List<Item> teachers;
+    private List<Item> items;
     private OnItemClickListener mListener;
 
     public RecyclerAdapter(Context context, List<Item> uploads) {
         mContext = context;
-        teachers = uploads;
+        items = uploads;
     }
 
     @Override
@@ -36,13 +37,13 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Item currentTeacher = teachers.get(position);
-        holder.nameTextView.setText(currentTeacher.getItem_name());
-        holder.descriptionTextView.setText(currentTeacher.getItem_description());
-        holder.priceTextView.setText(currentTeacher.getItem_price());
+        Item currentItem = items.get(position);
+        holder.nameTextView.setText(currentItem.getName());
+        holder.priceTextView.setText(currentItem.getPrice());
+        holder.descriptionTextView.setText(currentItem.getDescription());
         Picasso.with(mContext)
-                .load(currentTeacher.getImageUrl())
-                .placeholder(R.drawable.babybuy202)
+                .load(currentItem.getImageUrl())
+                .placeholder(R.drawable.download)
                 .fit()
                 .centerCrop()
                 .into(holder.itemImageView);
@@ -50,18 +51,18 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public int getItemCount() {
-        return teachers.size();
+        return items.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
 
-        public TextView nameTextView,descriptionTextView, priceTextView,dateTextView;
+        public TextView nameTextView, descriptionTextView, priceTextView;
         public ImageView itemImageView;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            nameTextView =itemView.findViewById ( R.id.itemTextView );
+            nameTextView = itemView.findViewById(R.id.itemTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
             itemImageView = itemView.findViewById(R.id.itemImageView);
@@ -83,7 +84,7 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select Action");
-            MenuItem showItem = menu.add( Menu.NONE, 1, 1, "Show");
+            MenuItem showItem = menu.add(Menu.NONE, 1, 1, "Show");
             MenuItem deleteItem = menu.add(Menu.NONE, 2, 2, "Delete");
 
             showItem.setOnMenuItemClickListener(this);
@@ -112,7 +113,9 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     public interface OnItemClickListener {
         void onItemClick(int position);
+
         void onShowItemClick(int position);
+
         void onDeleteItemClick(int position);
     }
 

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import com.example.babybuy.Model.Item;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -55,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
         chooseImageBtn = findViewById(R.id.imageView3);
         uploadBtn = findViewById(R.id.button);
         nameEditText = findViewById(R.id.loginMailItem);
+        priceEditText = findViewById(R.id.loginPassItem);
         descriptionEditText = findViewById ( R.id.itemDesc );
-        priceEditText = findViewById ( R.id.loginPassItem );
         chosenImageView = findViewById(R.id.imageView);
         uploadProgressBar = findViewById(R.id.progress_bar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("item_uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("item_uploads");
+        mStorageRef = FirebaseStorage.getInstance().getReference("items_uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("items_uploads");
 
         chooseImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,10 +131,10 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(MainActivity.this, "Teacher  Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Item  Upload successful", Toast.LENGTH_LONG).show();
                             Item upload = new Item(nameEditText.getText().toString().trim(),
                                     taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
-                                    descriptionEditText.getText().toString(),
+                                    descriptionEditText.getText ().toString (),
                                     priceEditText.getText().toString());
 
                             String uploadId = mDatabaseRef.push().getKey();
@@ -161,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void openImagesActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }
